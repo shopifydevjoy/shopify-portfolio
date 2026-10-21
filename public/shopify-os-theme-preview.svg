@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="70" x2="1090" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F0E8"/>
+      <stop offset="1" stop-color="#D9E2D9"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="210" y1="180" x2="1010" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9BAE9E"/>
+      <stop offset="1" stop-color="#38564A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#E6EAE4"/>
+  <rect x="44" y="36" width="1112" height="648" rx="24" fill="url(#bg)"/>
+  <rect x="44" y="36" width="1112" height="48" rx="24" fill="#14382D"/>
+  <circle cx="76" cy="60" r="6" fill="#F2B6A0"/>
+  <circle cx="98" cy="60" r="6" fill="#E5D19C"/>
+  <circle cx="120" cy="60" r="6" fill="#9DC6A7"/>
+  <rect x="420" y="51" width="360" height="18" rx="9" fill="#315447"/>
+  <rect x="44" y="84" width="1112" height="66" fill="#FBFAF6"/>
+  <text x="92" y="126" fill="#183A30" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="2">NORTH &amp; FORM</text>
+  <text x="620" y="122" fill="#42534B" font-family="Arial,sans-serif" font-size="14" letter-spacing="1">SHOP  COLLECTIONS  OUR STORY</text>
+  <circle cx="1070" cy="117" r="16" stroke="#42534B" stroke-width="2"/>
+  <path d="M1082 129 1093 140" stroke="#42534B" stroke-width="2" stroke-linecap="round"/>
+  <rect x="72" y="178" width="1056" height="300" rx="10" fill="url(#hero)"/>
+  <circle cx="895" cy="313" r="116" fill="#C6B79F" fill-opacity=".54"/>
+  <path d="M788 398c31-95 83-147 149-162 45 45 73 92 85 162H788Z" fill="#E6DDD0"/>
+  <rect x="844" y="255" width="84" height="145" rx="30" fill="#253A31"/>
+  <ellipse cx="886" cy="256" rx="42" ry="13" fill="#45574D"/>
+  <text x="130" y="273" fill="#F8F5EE" font-family="Arial,sans-serif" font-size="15" letter-spacing="4">MADE FOR THE EVERYDAY</text>
+  <text x="128" y="333" fill="#FFFDF8" font-family="Georgia,serif" font-size="50">Thoughtfully</text>
+  <text x="128" y="389" fill="#FFFDF8" font-family="Georgia,serif" font-size="50">made to last.</text>
+  <rect x="130" y="418" width="152" height="38" rx="19" fill="#FBFAF6"/>
+  <text x="151" y="443" fill="#183A30" font-family="Arial,sans-serif" font-size="13" font-weight="700">EXPLORE THE EDIT</text>
+  <text x="86" y="523" fill="#183A30" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="1">THE EVERYDAY COLLECTION</text>
+  <g>
+    <rect x="86" y="545" width="238" height="108" rx="8" fill="#E4DCCF"/>
+    <rect x="341" y="545" width="238" height="108" rx="8" fill="#D2DCD2"/>
+    <rect x="596" y="545" width="238" height="108" rx="8" fill="#E9E3D9"/>
+    <rect x="851" y="545" width="238" height="108" rx="8" fill="#C8D4CA"/>
+    <path d="M165 631c10-43 31-64 61-64s51 21 61 64H165Z" fill="#76877A"/>
+    <path d="M404 631c13-44 35-66 66-66s53 22 66 66H404Z" fill="#566D5E"/>
+    <path d="M654 631c13-44 35-66 66-66s53 22 66 66H654Z" fill="#B6A890"/>
+    <path d="M908 631c13-44 35-66 66-66s53 22 66 66H908Z" fill="#849486"/>
+  </g>
+</svg>

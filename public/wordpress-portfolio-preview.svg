@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="canvas" x1="120" y1="30" x2="1090" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4EDE3"/>
+      <stop offset="1" stop-color="#DFD5C9"/>
+    </linearGradient>
+    <linearGradient id="photo1" x1="90" y1="280" x2="535" y2="550" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C98E6A"/>
+      <stop offset="1" stop-color="#684C42"/>
+    </linearGradient>
+    <linearGradient id="photo2" x1="560" y1="280" x2="1060" y2="550" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#83928A"/>
+      <stop offset="1" stop-color="#34483F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#D7D0C7"/>
+  <rect x="48" y="36" width="1104" height="648" rx="20" fill="url(#canvas)"/>
+  <rect x="48" y="36" width="1104" height="54" rx="20" fill="#252923"/>
+  <circle cx="81" cy="63" r="6" fill="#EB9F89"/>
+  <circle cx="103" cy="63" r="6" fill="#E5C980"/>
+  <circle cx="125" cy="63" r="6" fill="#9BBC9A"/>
+  <rect x="421" y="51" width="358" height="23" rx="11" fill="#41463F"/>
+  <text x="91" y="145" fill="#282B25" font-family="Georgia,serif" font-size="25" letter-spacing="1">STUDIO MARGOT</text>
+  <text x="850" y="142" fill="#4F554D" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">WORK  ABOUT  JOURNAL</text>
+  <text x="92" y="233" fill="#9A6048" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="4">INDEPENDENT CREATIVE STUDIO</text>
+  <text x="88" y="302" fill="#252923" font-family="Georgia,serif" font-size="59">Selected work</text>
+  <path d="M93 329h1008" stroke="#B7AA9A"/>
+  <rect x="91" y="363" width="490" height="250" rx="8" fill="url(#photo1)"/>
+  <rect x="615" y="363" width="490" height="250" rx="8" fill="url(#photo2)"/>
+  <circle cx="336" cy="482" r="84" fill="#D2B39A" fill-opacity=".85"/>
+  <path d="M242 553c20-77 52-116 94-116s74 39 94 116H242Z" fill="#705648"/>
+  <path d="M668 554c31-68 74-102 129-102s98 34 129 102H668Z" fill="#BAC2B4"/>
+  <circle cx="797" cy="439" r="42" fill="#D3B99D"/>
+  <text x="94" y="646" fill="#343830" font-family="Arial,sans-serif" font-size="15" font-weight="700">OBJECTS &amp; INTERIORS</text>
+  <text x="617" y="646" fill="#343830" font-family="Arial,sans-serif" font-size="15" font-weight="700">SPACES THAT TELL STORIES</text>
+</svg>

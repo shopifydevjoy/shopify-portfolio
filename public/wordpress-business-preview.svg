@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="paper" x1="95" y1="50" x2="1100" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F3F0E8"/>
+      <stop offset="1" stop-color="#E0E7E1"/>
+    </linearGradient>
+    <linearGradient id="building" x1="690" y1="190" x2="1070" y2="510" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AFC1B5"/>
+      <stop offset="1" stop-color="#607D70"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#DCE4DE"/>
+  <rect x="46" y="34" width="1108" height="652" rx="22" fill="url(#paper)"/>
+  <rect x="46" y="34" width="1108" height="48" rx="22" fill="#263C32"/>
+  <circle cx="79" cy="58" r="6" fill="#E6A58F"/>
+  <circle cx="101" cy="58" r="6" fill="#E5D093"/>
+  <circle cx="123" cy="58" r="6" fill="#9FC5A3"/>
+  <rect x="426" y="49" width="348" height="18" rx="9" fill="#41584C"/>
+  <rect x="46" y="82" width="1108" height="72" fill="#F9F8F3"/>
+  <text x="92" y="128" fill="#273D33" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">HARRISON &amp; CO.</text>
+  <text x="706" y="124" fill="#53635A" font-family="Arial,sans-serif" font-size="13" letter-spacing="1">SERVICES  OUR TEAM  CONTACT</text>
+  <rect x="78" y="184" width="1044" height="303" rx="9" fill="url(#building)"/>
+  <rect x="700" y="244" width="322" height="243" rx="3" fill="#D5DDD4"/>
+  <rect x="739" y="286" width="244" height="201" fill="#8AA194"/>
+  <path d="M739 350h244M820 286v201M901 286v201" stroke="#E9EDE6" stroke-width="12"/>
+  <path d="M700 244h322l-36-42H736l-36 42Z" fill="#F0EBDD"/>
+  <text x="122" y="263" fill="#F5F3EA" font-family="Arial,sans-serif" font-size="13" letter-spacing="4">BUILDING BETTER, TOGETHER</text>
+  <text x="119" y="326" fill="#FFFDF7" font-family="Georgia,serif" font-size="48">A partner in</text>
+  <text x="119" y="381" fill="#FFFDF7" font-family="Georgia,serif" font-size="48">what comes next.</text>
+  <rect x="121" y="414" width="155" height="39" rx="20" fill="#FBFAF4"/>
+  <text x="141" y="439" fill="#294236" font-family="Arial,sans-serif" font-size="13" font-weight="700">HOW WE HELP</text>
+  <text x="90" y="536" fill="#2D4236" font-family="Arial,sans-serif" font-size="18" font-weight="700">OUR APPROACH</text>
+  <text x="90" y="573" fill="#657268" font-family="Arial,sans-serif" font-size="15">Clear thinking. Thoughtful design. Results that last.</text>
+  <rect x="814" y="518" width="286" height="112" rx="9" fill="#D8E3DA"/>
+  <text x="842" y="558" fill="#4A755A" font-family="Arial,sans-serif" font-size="14" font-weight="700">01  STRATEGY</text>
+  <text x="842" y="590" fill="#34483A" font-family="Georgia,serif" font-size="21">A clearer way forward</text>
+</svg>

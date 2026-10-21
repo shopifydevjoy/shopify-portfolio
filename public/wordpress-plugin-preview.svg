@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="base" x1="100" y1="50" x2="1110" y2="690" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F7F4"/>
+      <stop offset="1" stop-color="#E2EAE5"/>
+    </linearGradient>
+    <linearGradient id="chart" x1="400" y1="330" x2="1045" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D4EBDD"/>
+      <stop offset="1" stop-color="#E7F0E9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#DDE5DF"/>
+  <rect x="42" y="34" width="1116" height="652" rx="20" fill="url(#base)"/>
+  <path d="M42 54a20 20 0 0 1 20-20h186v652H62a20 20 0 0 1-20-20V54Z" fill="#193C31"/>
+  <text x="76" y="83" fill="#F2F5F1" font-family="Arial,sans-serif" font-size="21" font-weight="700">FLOWBOARD</text>
+  <circle cx="81" cy="141" r="5" fill="#8DD3AA"/>
+  <text x="101" y="147" fill="#E4EEE7" font-family="Arial,sans-serif" font-size="14">Overview</text>
+  <text x="101" y="194" fill="#AFC5B6" font-family="Arial,sans-serif" font-size="14">Projects</text>
+  <text x="101" y="241" fill="#AFC5B6" font-family="Arial,sans-serif" font-size="14">Reports</text>
+  <text x="101" y="288" fill="#AFC5B6" font-family="Arial,sans-serif" font-size="14">Team</text>
+  <text x="278" y="95" fill="#25382D" font-family="Arial,sans-serif" font-size="25" font-weight="700">Good morning, Alex</text>
+  <text x="280" y="122" fill="#78877C" font-family="Arial,sans-serif" font-size="14">Here's what's happening with your workspace.</text>
+  <rect x="280" y="157" width="246" height="116" rx="12" fill="#FFFFFF"/>
+  <rect x="544" y="157" width="246" height="116" rx="12" fill="#FFFFFF"/>
+  <rect x="808" y="157" width="302" height="116" rx="12" fill="#FFFFFF"/>
+  <text x="302" y="190" fill="#7B897F" font-family="Arial,sans-serif" font-size="13">ACTIVE PROJECTS</text>
+  <text x="302" y="242" fill="#203D30" font-family="Arial,sans-serif" font-size="37" font-weight="700">24</text>
+  <text x="566" y="190" fill="#7B897F" font-family="Arial,sans-serif" font-size="13">TASKS COMPLETED</text>
+  <text x="566" y="242" fill="#203D30" font-family="Arial,sans-serif" font-size="37" font-weight="700">186</text>
+  <text x="831" y="190" fill="#7B897F" font-family="Arial,sans-serif" font-size="13">TEAM PRODUCTIVITY</text>
+  <text x="831" y="242" fill="#203D30" font-family="Arial,sans-serif" font-size="37" font-weight="700">92%</text>
+  <rect x="280" y="294" width="830" height="331" rx="14" fill="url(#chart)"/>
+  <text x="308" y="334" fill="#293C31" font-family="Arial,sans-serif" font-size="17" font-weight="700">Project activity</text>
+  <text x="308" y="357" fill="#829087" font-family="Arial,sans-serif" font-size="12">Tasks completed over the last 30 days</text>
+  <path d="M330 557h725M330 500h725M330 443h725M330 386h725" stroke="#C6D6CA"/>
+  <path d="m345 526 92-48 88 20 91-70 92 27 88-87 92 28 89-72 78 24" stroke="#2B7B59" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m345 526 92-48 88 20 91-70 92 27 88-87 92 28 89-72 78 24v209H345V526Z" fill="#74B88D" fill-opacity=".15"/>
+  <circle cx="797" cy="368" r="7" fill="#FFFFFF" stroke="#2B7B59" stroke-width="4"/>
+  <text x="330" y="593" fill="#839087" font-family="Arial,sans-serif" font-size="11">WEEK 1</text>
+  <text x="536" y="593" fill="#839087" font-family="Arial,sans-serif" font-size="11">WEEK 2</text>
+  <text x="742" y="593" fill="#839087" font-family="Arial,sans-serif" font-size="11">WEEK 3</text>
+  <text x="951" y="593" fill="#839087" font-family="Arial,sans-serif" font-size="11">WEEK 4</text>
+</svg>

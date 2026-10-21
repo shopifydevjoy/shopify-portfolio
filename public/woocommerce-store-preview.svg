@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="wash" x1="105" y1="85" x2="1080" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F0E7"/>
+      <stop offset="1" stop-color="#E5DCCF"/>
+    </linearGradient>
+    <linearGradient id="product" x1="700" y1="190" x2="1035" y2="502" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D4BE9B"/>
+      <stop offset="1" stop-color="#9A7957"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#E5DED3"/>
+  <rect x="46" y="34" width="1108" height="652" rx="22" fill="url(#wash)"/>
+  <rect x="46" y="34" width="1108" height="48" rx="22" fill="#312F29"/>
+  <circle cx="79" cy="58" r="6" fill="#E8A38C"/>
+  <circle cx="101" cy="58" r="6" fill="#E4CC8D"/>
+  <circle cx="123" cy="58" r="6" fill="#A3C39C"/>
+  <rect x="426" y="49" width="348" height="18" rx="9" fill="#514B40"/>
+  <rect x="46" y="82" width="1108" height="68" fill="#FCFAF5"/>
+  <text x="92" y="125" fill="#342F28" font-family="Georgia,serif" font-size="24" font-weight="700" letter-spacing="2">GOOD GOODS</text>
+  <text x="716" y="121" fill="#665F53" font-family="Arial,sans-serif" font-size="13" letter-spacing="1">SHOP  NEW ARRIVALS  ABOUT</text>
+  <rect x="75" y="180" width="1050" height="314" rx="10" fill="#E9E0D2"/>
+  <rect x="660" y="204" width="428" height="266" rx="8" fill="url(#product)"/>
+  <ellipse cx="874" cy="441" rx="122" ry="16" fill="#654C37" fill-opacity=".26"/>
+  <path d="M811 420c3-88 16-149 63-166 47 17 60 78 63 166H811Z" fill="#F0E8DA"/>
+  <path d="M850 258c2-28 10-43 24-43s22 15 24 43" stroke="#E2D4C1" stroke-width="8"/>
+  <text x="122" y="251" fill="#836A4C" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="4">A LITTLE MORE EVERYDAY</text>
+  <text x="119" y="316" fill="#342F28" font-family="Georgia,serif" font-size="49">Objects with</text>
+  <text x="119" y="372" fill="#342F28" font-family="Georgia,serif" font-size="49">a softer touch.</text>
+  <text x="122" y="408" fill="#6E665A" font-family="Arial,sans-serif" font-size="15">Thoughtful essentials for home and life.</text>
+  <rect x="121" y="429" width="140" height="38" rx="19" fill="#39362E"/>
+  <text x="143" y="454" fill="#FFFDF8" font-family="Arial,sans-serif" font-size="13" font-weight="700">SHOP NOW</text>
+  <text x="88" y="543" fill="#38332B" font-family="Arial,sans-serif" font-size="17" font-weight="700">SHOP CUSTOMER FAVORITES</text>
+  <g>
+    <rect x="88" y="562" width="234" height="84" rx="8" fill="#DED2C0"/>
+    <rect x="341" y="562" width="234" height="84" rx="8" fill="#D6D8C8"/>
+    <rect x="594" y="562" width="234" height="84" rx="8" fill="#E2D9CA"/>
+    <rect x="847" y="562" width="234" height="84" rx="8" fill="#D3D7CB"/>
+    <circle cx="205" cy="594" r="22" fill="#A88967"/>
+    <rect x="397" y="579" width="54" height="39" rx="14" fill="#637D68"/>
+    <path d="M664 615c4-30 16-45 36-45s32 15 36 45h-72Z" fill="#B58E70"/>
+    <path d="M914 615c5-25 17-38 37-38s32 13 37 38h-74Z" fill="#75856C"/>
+  </g>
+</svg>

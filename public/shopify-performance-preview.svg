@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" fill="none">
+  <defs>
+    <linearGradient id="backdrop" x1="160" y1="130" x2="1060" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EEE8DB"/>
+      <stop offset="1" stop-color="#C8D3C8"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="680" y1="200" x2="1030" y2="490" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AAB8A9"/>
+      <stop offset="1" stop-color="#647B69"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" fill="#DEE4DE"/>
+  <rect x="46" y="34" width="1108" height="652" rx="22" fill="url(#backdrop)"/>
+  <rect x="46" y="34" width="1108" height="48" rx="22" fill="#15392D"/>
+  <circle cx="79" cy="58" r="6" fill="#E8A997"/>
+  <circle cx="101" cy="58" r="6" fill="#E5CF93"/>
+  <circle cx="123" cy="58" r="6" fill="#9EC4A3"/>
+  <rect x="426" y="49" width="348" height="18" rx="9" fill="#34594A"/>
+  <rect x="46" y="82" width="1108" height="66" fill="#FBFAF6"/>
+  <text x="92" y="124" fill="#183B30" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="2">FIELDNOTES</text>
+  <text x="702" y="120" fill="#46574D" font-family="Arial,sans-serif" font-size="14" letter-spacing="1">SHOP  JOURNAL  OUR STORY</text>
+  <rect x="76" y="178" width="1048" height="308" rx="10" fill="url(#hero)"/>
+  <circle cx="866" cy="332" r="116" fill="#D7C7A9" fill-opacity=".8"/>
+  <path d="M736 423c28-90 72-136 130-136s102 46 130 136H736Z" fill="#465B4D"/>
+  <rect x="829" y="265" width="77" height="157" rx="28" fill="#21372C"/>
+  <text x="122" y="265" fill="#F7F5EE" font-family="Arial,sans-serif" font-size="14" letter-spacing="4">A BETTER EVERYDAY</text>
+  <text x="120" y="326" fill="#FFFDF7" font-family="Georgia,serif" font-size="50">Simple things,</text>
+  <text x="120" y="381" fill="#FFFDF7" font-family="Georgia,serif" font-size="50">beautifully made.</text>
+  <rect x="122" y="415" width="148" height="39" rx="20" fill="#FBFAF6"/>
+  <text x="143" y="440" fill="#1F4235" font-family="Arial,sans-serif" font-size="13" font-weight="700">SHOP THE EDIT</text>
+  <text x="88" y="531" fill="#263E32" font-family="Arial,sans-serif" font-size="18" font-weight="700">BESTSELLERS</text>
+  <g fill="#FBFAF6">
+    <rect x="88" y="550" width="236" height="102" rx="8"/>
+    <rect x="342" y="550" width="236" height="102" rx="8"/>
+    <rect x="596" y="550" width="236" height="102" rx="8"/>
+    <rect x="850" y="550" width="236" height="102" rx="8"/>
+  </g>
+  <g fill="#91A28F">
+    <path d="M159 631c9-38 27-57 54-57s45 19 54 57H159Z"/>
+    <path d="M408 631c9-38 27-57 54-57s45 19 54 57H408Z"/>
+    <path d="M662 631c9-38 27-57 54-57s45 19 54 57H662Z"/>
+    <path d="M916 631c9-38 27-57 54-57s45 19 54 57H916Z"/>
+  </g>
+</svg>

@@ -1,0 +1,701 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   theme.css — palette, semantic roles, and the two themes.
+
+   Three layers, and the order matters:
+
+   1. RAW PALETTE   the actual colours. Never referenced in markup.
+   2. SEMANTIC ROLES what a colour is FOR. These are what themes swap.
+   3. @theme         exposes the roles to Tailwind as utilities.
+
+   Markup only ever uses a role: bg-surface, text-secondary, border-line.
+   So a theme redefines ~20 values and the whole site follows. Nothing in a
+   component knows which theme is active.
+   ========================================================================== */
+
+/* ---- 1. raw palette ---------------------------------------------------- */
+:root {
+  /* ── Motion scale ────────────────────────────────────────────────────
+     The audit found 15 distinct transition durations between 180ms and 1.5s
+     and 6 easing curves across the sections. No single one was wrong; the
+     spread is what read as unpolished. Four durations and three curves cover
+     everything the site does. Reach for a token, never a raw number.
+
+       dur-1  colour, opacity, borders — barely tracked by the eye
+       dur-2  the standard hover: lift, scale, icon shift
+       dur-3  entrances and reveals
+       dur-4  big positional moves (the card fan, the timeline ring)
+       dur-5  ambient drift nobody is waiting on — a light following a
+              cursor, a parallax settling. Long on purpose.
+
+     ease-pop overshoots the start so an arrival snaps — for things that
+     appear from nothing. Pairs with --ease-out-expo (the house curve) and
+     --ease-soft, both in @theme.
+
+     Deliberately NOT in @theme: Tailwind v4 drops theme tokens it cannot see
+     referenced, and the section CSS is injected at runtime where Tailwind
+     never looks. Declared there, these are tree-shaken out and every var()
+     silently falls back to nothing.                                        */
+  --dur-1: 180ms;
+  --dur-2: 320ms;
+  --dur-3: 620ms;
+  --dur-4: 880ms;
+  --dur-5: 1200ms;
+  --ease-pop: cubic-bezier(.333, 0, 0, 1);
+  /* Accelerating, not decelerating. Things LEAVING should speed up as they
+     go — the card thrown off the fan. Never use this for an entrance. */
+  --ease-exit: cubic-bezier(.55, .05, .7, .2);
+
+  /* ── Paper ───────────────────────────────────────────────────────────
+     The project cards are a light object sitting ON the page, not a part of
+     it, so they stay paper-coloured in both themes — a card that inverted
+     with the theme would stop reading as a physical thing.
+
+     Theme-independent on purpose, which is why they live here rather than in
+     the two :root[data-theme] blocks. Previously these were 9 raw hex values
+     inline in Work.jsx; nothing else could reference them and no one could
+     tell which greens were deliberate.                                      */
+  --c-paper: #ffffff;
+  /* the card face */
+  --c-paper-media: #dcece1;
+  /* behind an image that has not loaded */
+  --c-paper-ink: #063d2d;
+  /* headings and body on paper */
+  --c-paper-ink-2: #3c5f51;
+  /* secondary copy on paper */
+  --c-paper-link: #00875f;
+  /* links on paper — darker than the page
+                                  accent, which fails contrast on white */
+  --c-paper-badge: #d3e3da;
+  /* text on the dark badge over an image */
+
+  /* greens — the ramp. Extended at both ends to absorb six one-off hex
+     values that were sitting inline in About, Header and Services. */
+  --g-950: #073b2b;
+  --g-900: #016a4e;
+  --g-800: #0b6345;
+  --g-700: #00a878;
+  --g-500: #2fc98d;
+  --g-400: #5be49b;
+  --g-300: #8cffc6;
+  --g-100: #dcfff0;
+  --g-050: #f2fff6;
+
+  /* dark neutrals */
+  --n-950: #050907;
+  --n-900: #060c09;
+  --n-850: #0b1511;
+  --n-800: #0f1a16;
+  --n-700: #11271f;
+  --n-400: #55675e;
+  --n-300: #8ca399;
+  --n-200: #bdcfc6;
+  --n-100: #d3e3da;
+  --n-050: #e4efe9;
+
+  /* light neutrals */
+  --l-050: #f4f8f6;
+  --l-100: #eaf1ed;
+  --l-200: #dde8e2;
+  --l-300: #c3d4cb;
+  --l-500: #6b8077;
+  --l-700: #3d4f47;
+  --l-900: #0f1a15;
+}
+
+/* ---- the services stage ------------------------------------------------------
+   Two deep-forest "scenes", each holding a fan of paper cards. It is the SAME
+   in both themes on purpose: the paper only reads as paper against a dark
+   stage, so the stage does not invert with the page. That also means every
+   colour inside it is fixed, and its contrast is checked once, here:
+
+     on the glass   measured by the audit in both themes (see the contrast notes in the roles above)
+     on the paper   ink 11.4 · ink-2 8.2 · muted 6.6 · tick (icon) 5.0   */
+:root {
+  /* glass, dark theme: a sliver of white over the page, an edge that catches light */
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .025));
+  --glass-border: rgba(255, 255, 255, .13);
+  --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, .10), transparent 38%);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 30px 60px -36px rgba(0, 0, 0, .8);
+  --stage-title: #f2fff6;
+  --stage-text: #c6e7d5;
+  --stage-label: #a8e7bd;
+  --stage-mint: #5be49b;
+  --stage-medal-bg: rgba(168, 231, 189, .12);
+  --stage-medal-line: rgba(168, 231, 189, .28);
+  --stage-pip: rgba(168, 231, 189, .28);
+  --stage-spot: rgba(91, 228, 155, .20);
+
+  --paper-1: #ffffff;
+  --paper-2: #eef9f1;
+  --paper-ink: #063d2d;
+  --paper-ink-2: #2a5242;
+  --paper-muted: #3c5f51;
+  --paper-accent: #13794a;
+  --paper-line: rgba(6, 61, 45, .12);
+  --paper-edge: rgba(255, 255, 255, .9);
+  /* on dark glass the card's edge is a white rim */
+  --paper-shadow: 0 1px 2px rgba(0, 16, 10, .25), 0 16px 30px -14px rgba(0, 16, 10, .55);
+  --paper-shadow-active: 0 2px 4px rgba(0, 16, 10, .28), 0 38px 56px -22px rgba(0, 16, 10, .75),
+    0 0 0 1px rgba(255, 255, 255, .6);
+
+  /* the hero's two folders. The flap text sits on a gradient that is lighter at the top, so each text
+     colour is checked at both ends:  label 7.3 · sublabel 5.4 (dark)   label 6.1 · sublabel 4.8 (light) */
+  /* These read GREY on screen before, not green. The culprit was not the hex
+     — it was the front panel mixing itself with white
+     (color-mix(var(--ff-front) 92%, #fff)) on top of a dark inner shadow,
+     which desaturates any mid green to slate. Pushed toward Shopify's own
+     green so there is saturation left to lose. */
+  --folder-back: #0b3a28;
+  --folder-front: #1c6b45;
+  --folder-paper: #eafff2;
+  --folder-label: #f2fff6;
+  --folder-sub: #bfe3cf;
+  --folder-pill: #f4fbf6;
+  --folder-pill-ink: #063d2d;
+}
+
+/* ---- 2. semantic roles — dark is the default ---------------------------- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --c-surface: var(--n-950);
+  /* the page */
+  /* The well was --n-900 (#060c09) against a --n-950 (#050907) page: about a
+     1% lightness step, which no one can see. Alternation only works if it
+     actually reads, so the well is now --n-850. */
+  --c-surface-sunken: var(--n-850);
+  /* alternating section wells */
+  --c-surface-raised: var(--n-800);
+  /* cards */
+  --c-surface-top: var(--n-700);
+  /* the lit top edge of the footer */
+  --c-surface-glass: rgba(9, 20, 16, .62);
+  --c-surface-glass-stuck: rgba(7, 16, 12, .82);
+  --c-surface-overlay: #060d0a;
+  /* the mobile menu */
+
+  /* Text roles are solved for contrast, not picked by eye. Each value is the
+     worst-case WCAG ratio across every surface text sits on in this theme,
+     including the lightest stop of the footer gradient. AA is 4.5.
+     Do not nudge these darker "to soften" them: faint used to be #55675e,
+     which measured 2.6 and was the reason tags and captions were unreadable. */
+  --c-text-primary: #ecf4f0;
+  /* 14.1 */
+  --c-text-body: #d6e5dd;
+  /* 12.1 */
+  --c-text-secondary: #c1d2ca;
+  /* 10.0 */
+  --c-text-label: #b3cabe;
+  /*  9.1 */
+  --c-text-muted: #adbdb6;
+  /*  8.1 */
+  --c-text-faint: #8ea298;
+  /*  5.8 — captions and index numbers only */
+  --c-text-accent: #5be49b;
+  /*  9.8 — accent colour used AS TEXT */
+  --c-text-invert: #04120d;
+  /* on an accent fill */
+
+  --c-accent: var(--g-700);
+  --c-accent-soft: var(--g-400);
+  --c-accent-hi: var(--g-300);
+
+  --c-line: rgba(140, 255, 205, .11);
+  --c-line-strong: rgba(140, 255, 205, .22);
+
+  /* effects — see useLiquidField and app.css */
+  --fx-blend: screen;
+  /* additive light on a dark ground */
+  --fx-field-rest: rgba(126, 205, 170, .085);
+  --fx-glyph-cold: 120 225 180;
+  /* rgb triples the canvas interpolates */
+  --fx-glyph-hot: 255 255 240;
+  --fx-bloom: rgba(91, 228, 155, .14);
+  --fx-glow: rgba(91, 228, 155, .055);
+  --fx-haze-a: rgba(0, 168, 120, .20);
+  --fx-haze-b: rgba(46, 120, 96, .16);
+  --fx-wordmark: rgba(214, 255, 235, .16);
+  --fx-wordmark-2: rgba(214, 255, 235, .035);
+  --fx-wordmark-lit: rgba(140, 255, 200, .6);
+
+  /* the wordmark: one colour band that travels the word, a bevel over it,
+     and a dark extrusion beneath */
+  --wm-1: #0b7a55;
+  /* deep green    */
+  --wm-2: #22d896;
+  /* mint          */
+  --wm-3: #ecfff7;
+  /* hot highlight */
+  --wm-4: #38c6ea;
+  /* cool cyan     */
+  --wm-shine: rgba(255, 255, 255, .55);
+  --wm-shade: rgba(0, 24, 14, .50);
+  --wm-ext-1: #0a3a2a;
+  --wm-ext-2: #04180f;
+  --wm-cast: rgba(0, 0, 0, .55);
+
+  /* the hero's light rig — a key light low and right, a cool rim top left,
+     and a dark mass that occludes both */
+  --rig-core: rgba(185, 255, 225, .78);
+  --rig-key: rgba(0, 230, 158, .92);
+  --rig-shaft: rgba(120, 255, 205, .10);
+  --rig-shaft-hot: rgba(190, 255, 230, .20);
+  --rig-key2: rgba(91, 228, 155, .30);
+  --rig-rim: rgba(70, 180, 255, .18);
+  --rig-mass: rgba(2, 8, 6, .97);
+  --rig-floor: rgba(0, 190, 132, .30);
+  /* shader palette — plain 0-255 triples, read by useAurora */
+  --sky-back: 5 10 8;
+  --sky-deep: 4 26 19;
+  --sky-mid: 0 150 104;
+  --sky-hot: 150 255 210;
+  --sky-strength: 1;
+
+  /* A card has to be a surface in its own right. At 4% white it was a window
+     onto whatever glowed behind it — on a phone the WordPress card sits on the
+     hero's bright floor light, which put 2:1 text on it. */
+
+}
+
+/* ---- light --------------------------------------------------------------
+   Deliberately a correct stub, not a finished design. Every role has a
+   sensible value so nothing is unreadable; the tuning comes once the dark
+   version has stopped moving.
+   ------------------------------------------------------------------------ */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --c-surface: var(--l-050);
+  --c-surface-sunken: var(--l-100);
+  --c-surface-raised: #ffffff;
+  --c-surface-top: var(--l-200);
+  --c-surface-glass: rgba(255, 255, 255, .72);
+  --c-surface-glass-stuck: rgba(255, 255, 255, .88);
+  --c-surface-overlay: var(--l-050);
+
+  /* solved against #f4f8f6, #eaf1ed, #ffffff and #dde8e2 (the footer's
+     darkest stop) — see the note on the dark theme */
+  --c-text-primary: #0f1a15;
+  /* 14.2 */
+  --c-text-body: #242f2a;
+  /* 11.0 */
+  --c-text-secondary: #2c3934;
+  /*  9.6 */
+  --c-text-label: #36403c;
+  /*  8.6 */
+  --c-text-muted: #3d4944;
+  /*  7.5 */
+  --c-text-faint: #4d5b55;
+  /*  5.7 */
+  --c-text-accent: #006b4c;
+  /*  5.2 — the fill green (#00a878) is only 2.4 as text */
+  /* dark text on the bright green button, not white: white on #00a878 is 3.0,
+     near-black is 6.3 — and it matches the dark theme's button */
+  --c-text-invert: #04120d;
+
+  --c-accent: var(--g-900);
+  --c-accent-soft: var(--g-700);
+  --c-accent-hi: #015a42;
+  /* used as text; 6.6 */
+  /* glass, light theme: frosted white, so the text on it flips to dark */
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, .46));
+  --glass-border: rgba(255, 255, 255, .95);
+  --glass-sheen: linear-gradient(135deg, rgba(255, 255, 255, .7), transparent 40%);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 24px 50px -30px rgba(15, 40, 30, .28), 0 0 0 1px rgba(15, 40, 30, .06);
+  --stage-title: #0f1a15;
+  --stage-text: #2c3934;
+  --stage-label: #36403c;
+  --stage-mint: #006b4c;
+  --stage-medal-bg: rgba(0, 107, 76, .09);
+  --stage-medal-line: rgba(0, 107, 76, .26);
+  --stage-pip: rgba(15, 26, 21, .18);
+  --stage-spot: rgba(0, 168, 120, .15);
+  --paper-edge: rgba(6, 61, 45, .18);
+  /* on white glass a white rim vanishes, so use a green hairline */
+  --folder-back: #0a4a34;
+  /* a dark object on a pale page: it needs to be dark to be seen */
+  --folder-front: #12714c;
+  --folder-paper: #e8fff1;
+  --folder-sub: #c6e9d6;
+
+  --c-line: rgba(15, 26, 21, .12);
+  --c-line-strong: rgba(15, 26, 21, .22);
+
+  /* The effects invert, they do not merely recolour. Screen lightens, so
+     on a light ground it does nothing at all — multiply is its opposite
+     number, and the glyphs go dark-on-light instead of glowing. */
+  --fx-blend: multiply;
+  --fx-field-rest: rgba(40, 90, 70, .10);
+  --fx-glyph-cold: 90 140 115;
+  --fx-glyph-hot: 10 60 40;
+  --fx-bloom: rgba(0, 120, 88, .10);
+  --fx-glow: rgba(0, 168, 120, .10);
+  --fx-haze-a: rgba(0, 168, 120, .14);
+  --fx-haze-b: rgba(46, 120, 96, .10);
+  --fx-wordmark: rgba(15, 26, 21, .14);
+  --fx-wordmark-2: rgba(15, 26, 21, .04);
+  --fx-wordmark-lit: rgba(0, 150, 105, .45);
+
+  --wm-1: #016a4e;
+  --wm-2: #00a878;
+  --wm-3: #3fe0a8;
+  --wm-4: #0e8fc2;
+  --wm-shine: rgba(255, 255, 255, .42);
+  --wm-shade: rgba(0, 40, 28, .38);
+  --wm-ext-1: #0a5a41;
+  --wm-ext-2: #04382a;
+  --wm-cast: rgba(0, 70, 48, .30);
+
+  --rig-core: rgba(0, 210, 148, .30);
+  --rig-key: rgba(0, 180, 128, .36);
+  --rig-shaft: rgba(0, 150, 110, .07);
+  --rig-shaft-hot: rgba(0, 170, 125, .13);
+  --rig-key2: rgba(120, 230, 180, .20);
+  --rig-rim: rgba(90, 160, 220, .12);
+  --rig-mass: rgba(255, 255, 255, .78);
+  --rig-floor: rgba(0, 168, 120, .16);
+  --sky-back: 244 248 246;
+  --sky-deep: 214 232 223;
+  --sky-mid: 120 205 170;
+  --sky-hot: 255 255 255;
+  --sky-strength: 1;
+
+}
+
+/* ---- 3. the roles, as Tailwind utilities -------------------------------- */
+@theme {
+  --color-surface: var(--c-surface);
+  --color-surface-sunken: var(--c-surface-sunken);
+  --color-surface-raised: var(--c-surface-raised);
+  --color-surface-top: var(--c-surface-top);
+  --color-glass: var(--c-surface-glass);
+  --color-glass-stuck: var(--c-surface-glass-stuck);
+  --color-overlay: var(--c-surface-overlay);
+
+  --color-primary: var(--c-text-primary);
+  --color-body: var(--c-text-body);
+  --color-secondary: var(--c-text-secondary);
+  --color-muted: var(--c-text-muted);
+  --color-faint: var(--c-text-faint);
+  --color-label: var(--c-text-label);
+  --color-invert: var(--c-text-invert);
+  --color-link: var(--c-text-accent);
+
+  --color-accent: var(--c-accent);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-accent-hi: var(--c-accent-hi);
+
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+
+  --font-display: "Josefin Sans", "Poppins", system-ui, sans-serif;
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-step--1: clamp(12px, .8vw + 10px, 13px);
+  --text-step-0: clamp(14px, .9vw + 11px, 15px);
+  --text-step-1: clamp(18px, 1.2vw + 14px, 21px);
+  --text-step-2: clamp(24px, 2vw + 16px, 34px);
+  --text-step-3: clamp(32px, 3.6vw + 18px, 58px);
+  --text-step-4: clamp(42px, 6vw + 20px, 92px);
+
+  /* The space between the content and the screen edge. Capped at 40px so a
+     1280px laptop still has room for the full 1200px of content (1200 + 2x40). */
+  --spacing-gutter: clamp(22px, 5vw, 40px);
+  /* Padding on ONE side of a section, so two sections meeting show double
+     this between them: 80 + 80 = 160 on desktop, 48 + 48 = 96 on a phone.
+     Was 40, which put only 80px between sections under 58px headings — the
+     page read as one continuous column with no breathing room. */
+  --spacing-section: clamp(48px, 6vw, 80px);
+  /* The step INSIDE a section: heading to body, block to block. Deliberately
+     about half the section step so the outer rhythm always reads louder. */
+  --spacing-block: clamp(26px, 3.2vw, 44px);
+  /* The site is 1200px wide, meaning the CONTENT is 1200px. Every section is
+     `max-w-site px-gutter`, and max-width counts the padding, so the cap has to
+     include both gutters or the content comes up short. That was the bug: a flat
+     1180px cap left 1036px of content at 1440. Below ~1280px there is no room,
+     the cap stops mattering, and the content simply fills the screen minus the
+     gutters. */
+  --container-site: calc(1200px + 2 * var(--spacing-gutter));
+  /* For a container whose PARENT already supplies the side padding (the footer
+     does): the content width on its own, with no gutters added. */
+  --container-content: 1200px;
+
+  --ease-out-expo: cubic-bezier(.16, 1, .3, 1);
+  --ease-soft: cubic-bezier(.4, 0, .2, 1);
+  --radius-pill: 999px;
+
+  /* The motion scale (--dur-*, --ease-pop) is in the plain :root at the top
+     of this file, not here — see the note there. */
+}
+
+/* The theme switch should feel like one action rather than a dozen, so colours fade by default.
+
+   This MUST be in a layer, and the lowest one. It used to be unlayered, and unlayered CSS beats every
+   layered rule no matter the specificity — so this `transition:` shorthand, on `*`, silently replaced the
+   transition of every element on the site (every `transition-*` utility and every transition in the
+   section CSS). Hover effects snapped instead of animating. In the base layer it is only the default:
+   an element that sets its own transition keeps it. */
+@layer base {
+
+  :root[data-theme-ready] *,
+  :root[data-theme-ready] *::before,
+  :root[data-theme-ready] *::after {
+    transition: background-color .4s var(--ease-soft),
+      border-color .4s var(--ease-soft),
+      color .4s var(--ease-soft);
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DOCUMENT + SHARED STYLES (was app.css)
+
+   Only what is used by more than one section, or by the document itself.
+   Each section's own CSS sits at the top of that section's file.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    /* clip, not hidden: hidden on body alone still lets the root scroll
+       sideways, and hidden here would break position:sticky.
+       auto, not smooth: Lenis drives scrolling and the two fight. */
+    overflow-x: clip;
+    scroll-behavior: auto;
+    scroll-padding-top: calc(96px + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  body {
+    margin: 0;
+    overflow-x: clip;
+    background: var(--c-surface);
+    color: var(--c-text-body);
+    font-family: var(--font-sans);
+    font-size: var(--text-step-0);
+    font-weight: 400;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: .015em;
+    color: var(--c-text-primary);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    background: var(--c-accent-soft);
+    color: var(--c-text-invert);
+  }
+
+  :where(a, button, input, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--c-accent-soft);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+
+  /* ---- section rhythm ----------------------------------------------------
+     Every section used bg-surface, so the page was one unbroken field and
+     nothing told you where one idea ended and the next began. `.well` is the
+     alternate: a slightly lifted surface with hairlines top and bottom, so
+     the boundary reads even where the tint is subtle. Apply to every OTHER
+     section, never two in a row — the alternation is the signal.            */
+  .well {
+    background: var(--c-surface-sunken);
+    border-block: 1px solid var(--c-line);
+  }
+
+  /* A section that needs separating from its neighbour without a change of
+     tint — the hairline alone. Use when two wells would otherwise meet. */
+  .edge-top {
+    border-top: 1px solid var(--c-line);
+  }
+
+  .fx-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: .045;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---- the sweeping underline: one hover language for the whole site ---- */
+  .link-sweep {
+    position: relative;
+    display: inline-block;
+  }
+
+  .link-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 1px;
+    background: var(--c-accent-soft);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .5s var(--ease-out-expo);
+  }
+
+  .link-sweep:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ---- live status dot ---- */
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c-accent-soft);
+    flex: none;
+    animation: dot-ping 2.6s ease-out infinite;
+  }
+
+  @keyframes dot-ping {
+    0% {
+      box-shadow: 0 0 0 0 var(--c-accent-soft);
+    }
+
+    70%,
+    100% {
+      box-shadow: 0 0 0 7px transparent;
+    }
+  }
+
+  /* ---- skip link: offscreen until focused ---- */
+  .skip-link {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 100;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--c-accent-soft);
+    color: var(--c-text-invert);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    transform: translateY(-200%);
+    transition: transform .45s var(--ease-out-expo);
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  /* ---- section label: used on every section, so it earns a class ---- */
+  .label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--c-text-label);
+  }
+
+  /* ---- buttons ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: transform .45s var(--ease-out-expo),
+      background .45s var(--ease-out-expo),
+      border-color .45s var(--ease-out-expo),
+      box-shadow .45s var(--ease-out-expo);
+  }
+
+  .btn-solid {
+    background: var(--c-accent-soft);
+    color: var(--c-text-invert);
+    border: 1px solid var(--c-accent-soft);
+  }
+
+  .btn-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -14px rgba(0, 168, 120, .9);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--c-line);
+    color: var(--c-text-body);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--c-line-strong);
+    color: var(--c-accent-hi);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
